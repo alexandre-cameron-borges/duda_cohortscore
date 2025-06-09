@@ -1,0 +1,24 @@
+# Pour l'app Streamlit
+streamlit>=1.25.0
+
+# Data science de base
+pandas>=2.0.0
+numpy>=1.24.0
+
+# Visualisation
+matplotlib>=3.7.0
+seaborn>=0.12.0
+plotly>=5.15.0
+
+# WordCloud et traitement d’images
+wordcloud>=1.8.2
+Pillow>=9.5.0
+
+# Machine learning (clustering RFM)
+scikit-learn>=1.2.0
+
+# Text mining (stopwords, tokenisation)
+nltk>=3.8.1
+
+# Si tu veux exécuter le notebook hors Colab
+google-colab>=1.0.0
