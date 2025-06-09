@@ -22,3 +22,6 @@ nltk>=3.8.1
 
 # Si tu veux exécuter le notebook hors Colab
 google-colab>=1.0.0
+
+# Pour dataset sur kaggle
+kaggle>=1.5.13
