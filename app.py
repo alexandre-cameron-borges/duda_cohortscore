@@ -9,10 +9,9 @@ import os
 from kaggle.api.kaggle_api_extended import KaggleApi
 
 # --- Chargement des données depuis Kaggle ---
-@st.cache(allow_output_mutation=True)
+@st.cache_data(ttl=24*3600)
 def load_data():
     output_csv = 'instacart_cleaned.csv'
-    # Si le CSV n'existe pas localement, le télécharger depuis Kaggle
     if not os.path.exists(output_csv):
         api = KaggleApi()
         api.authenticate()
@@ -21,8 +20,7 @@ def load_data():
             path='.',
             unzip=True
         )
-    df = pd.read_csv(output_csv)
-    return df
+    return pd.read_csv(output_csv)
 
 # Chargement des données
 df = load_data()
@@ -32,13 +30,13 @@ st.sidebar.header("Filtres")
 jours = ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday']
 df['order_dow_name'] = df['order_dow'].map({i: jours[i] for i in range(7)})
 selected_days = st.sidebar.multiselect(
-    "Jours de la semaine", options=df['order_dow_name'].unique(), default=df['order_dow_name'].unique()
+    "Jours de la semaine", options=df['order_dow_name'].unique(), default=list(df['order_dow_name'].unique())
 )
 h_min, h_max = st.sidebar.slider(
     "Heure de la journée", int(df['order_hour_of_day'].min()), int(df['order_hour_of_day'].max()), (0, 23)
 )
 selected_aisles = st.sidebar.multiselect(
-    "Rayons", options=df['aisle'].unique(), default=df['aisle'].unique()
+    "Rayons", options=df['aisle'].unique(), default=list(df['aisle'].unique())
 )
 selected_clusters = st.sidebar.multiselect(
     "Segments RFM", options=df['Cluster'].unique().tolist(), default=df['Cluster'].unique().tolist()
@@ -47,7 +45,7 @@ selected_clusters = st.sidebar.multiselect(
 # Application des filtres
 filtered = df[
     (df['order_dow_name'].isin(selected_days)) &
-    (df['order_hour_of_day'] >= h_min) & (df['order_hour_of_day'] <= h_max) &
+    (df['order_hour_of_day'].between(h_min, h_max)) &
     (df['aisle'].isin(selected_aisles)) &
     (df['Cluster'].isin(selected_clusters))
 ]
@@ -75,10 +73,14 @@ st.pyplot(fig2)
 
 # 3) Analyse par Rayon
 st.subheader("Quantité vs CA par Rayon")
-fig3, axes = plt.subplots(1, 2, figsize=(12, 5))
+fig3, (ax_qty, ax_rev) = plt.subplots(1, 2, figsize=(12, 5))
 df_aisle = filtered.groupby('aisle').agg(qty=('order_id', 'count'), rev=('price', 'sum')).nlargest(10, 'qty')
-axes[0].barh(df_aisle.index, df_aisle['qty']); axes[0].set_title("Quantité"); axes[0].invert_yaxis()
-axes[1].barh(df_aisle.index, df_aisle['rev']); axes[1].set_title("CA (€)"); axes[1].invert_yaxis()
+ax_qty.barh(df_aisle.index, df_aisle['qty'])
+ax_qty.invert_yaxis()
+ax_qty.set_title("Quantité")
+ax_rev.barh(df_aisle.index, df_aisle['rev'])
+ax_rev.invert_yaxis()
+ax_rev.set_title("CA (€)")
 st.pyplot(fig3)
 
 # 4) Heatmap Jour x Heure
@@ -87,7 +89,8 @@ sales_matrix = filtered.groupby(['order_dow_name', 'order_hour_of_day']).size().
 sales_matrix_k = sales_matrix / 1000
 fig4, ax4 = plt.subplots(figsize=(8, 4))
 sns.heatmap(sales_matrix_k, annot=False, cmap='Greens', ax=ax4)
-ax4.set_xlabel("Heure"); ax4.set_ylabel("Jour")
+ax4.set_xlabel("Heure")
+ax4.set_ylabel("Jour")
 st.pyplot(fig4)
 
 # 5) Clusters RFM interactif
@@ -98,7 +101,7 @@ fig5 = px.scatter_3d(
     color='Cluster', size_max=6, opacity=0.7,
     title="RFM 3D"
 )
-st.plotly_chart(fig5)
+st.plotly_chart(fig5, use_container_width=True)
 
 # 6) WordCloud du texte d'article
 st.subheader("WordCloud du Texte")
@@ -110,5 +113,4 @@ st.image(w.to_array(), use_column_width=True)
 # Footer
 st.markdown("---")
 st.caption("App construite avec Streamlit pour explorer le dataset Instacart")
-
 
