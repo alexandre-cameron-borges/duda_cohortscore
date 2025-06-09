@@ -4,15 +4,26 @@ import matplotlib.pyplot as plt
 import seaborn as sns
 import plotly.express as px
 from wordcloud import WordCloud
+import os
+from kaggle.api.kaggle_api_extended import KaggleApi
 
-# URL raw GitHub du CSV nettoyé
-CSV_URL = "https://raw.githubusercontent.com/alexandre-cameron-borges/duda_cohortscore/main/instacart_cleaned.csv"
-
+# --- Chargement des données depuis Kaggle ---
 @st.cache(allow_output_mutation=True)
 def load_data():
-    df = pd.read_csv(CSV_URL)
+    output_csv = 'instacart_cleaned.csv'
+    # Si le CSV n'existe pas localement, le télécharger depuis Kaggle
+    if not os.path.exists(output_csv):
+        api = KaggleApi()
+        api.authenticate()
+        api.dataset_download_files(
+            'alexandrecameronb/duda-cohort',
+            path='.',
+            unzip=True
+        )
+    df = pd.read_csv(output_csv)
     return df
 
+# Chargement des données
 df = load_data()
 
 # --- Sidebar : filtres dynamiques ---
