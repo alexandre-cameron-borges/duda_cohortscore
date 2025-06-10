@@ -367,7 +367,7 @@ with col3d_2:
         st.plotly_chart(fig_interactive, use_container_width=True)
 
 # --- AJOUT DU TABLEAU RECAPITULATIF ---
-st.header("💡 Synthèse et Recommandations par Segment")
+st.header("💡 Synthèse par Segment")
 st.markdown("Ce tableau résume les caractéristiques de chaque segment de clientèle et propose des pistes d'actions concrètes pour chacun.")
 
 st.markdown("""
