@@ -16,7 +16,7 @@ st.title("💡 Alexandre & Alioune's DUDA Cohortscore v1")
 st.markdown('''Le :rainbow[DUDA Cohortscore] est le **MVP d'une Webapp streamlit de scoring d'audience (analyse descriptive Best-Sellers, RFM, LTV, Churn) réalisée pour le DU Panthéon Sorbonne Data Analytics 2025-2026 par Alexandre Cameron BORGES & Alioune DIOP**.  
 Basé sur de la visualisation seaborn, plotly, matplotlib & du K-mean clustering sur le dataset d'Instacart composé de 3M de commandes.
 
-**Contexte:** À l’ère post-cookie où Chrome et les Privacy Sandbox limitent le suivi tiers, les annonceurs doivent recentrer la mesure d’efficacité sur leurs données first-party ; cet outil aide les responsables marketing à sélectionner les produits, créneaux et cibles les plus rentables sans multiplier les tests A/B coûteux.
+**Contexte:** À l’ère post-cookie où Chrome et les Privacy Sandbox limitent le suivi tiers, les annonceurs doivent recentrer la mesure d’efficacité sur leurs données first-party ; cet outil aide les responsables marketing à sélectionner les produits, créneaux et cibles les plus rentables sans multiplier les tests A/B coûteux.''')
 
 # --- ÉTAPE 1 : Chargement des données depuis Google Drive ---
 # NOTE : Ce script va télécharger le fichier Parquet si il n'est pas trouvé localement.
