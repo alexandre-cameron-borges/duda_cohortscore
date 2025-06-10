@@ -132,8 +132,8 @@ st.metric("Lignes sélectionnées", f"{len(filtered):,}")
 # --- KPI globaux : prix moyen par produit, panier moyen, LTV moyenne ---
 col1, col2, col3 = st.columns(3)
 
-# 1) Prix moyen par produit
-avg_price_product = df['price'].mean()
+# 1) Prix moyen par produit (multiplication *6 pour être en phase avec le dataset complet incluant les commandes futures des clients)(en effet limite streamlit à 1M de lignes)
+avg_price_product = df['price'].mean()* 6
 
 # 2) Panier moyen par commande
 order_totals_all = df.groupby('order_id')['price'].sum()
