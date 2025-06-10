@@ -21,6 +21,10 @@
 
 ## · 2️⃣ 🚀 Démo rapide
 
+Ouvrez la WebApp hébergée → https://acb-dudacohortscore.streamlit.app/
+
+ou
+
 1. Cloner le dépôt et installer les dépendances (cf. §6).
 2. Lancer l’application :
 
