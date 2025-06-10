@@ -19,3 +19,6 @@ kaggle>=1.7.4
 
 # Machine learning (scaler, clustering)
 scikit-learn>=1.7.0
+
+# Chargement depuis Google Drive
+gdown>=4.7.1
