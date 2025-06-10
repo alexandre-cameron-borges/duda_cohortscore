@@ -12,8 +12,8 @@ import gdown # Ajout pour le téléchargement depuis Google Drive
 
 # --- ÉTAPE 1 : Chargement des données depuis Google Drive ---
 # NOTE : Ce script va télécharger le fichier Parquet si il n'est pas trouvé localement.
-GDRIVE_FILE_ID = "1kcG82dqaWf5L4XXwwT9y2uZLJ4IHfY_K"
-LOCAL_DATA_FILE = "data_sample_2million.parquet" # Nom du fichier qui sera sauvegardé localement
+GDRIVE_FILE_ID = "1znbv-o5XfyWLc_5IcnHosrDdgH8JafDp"
+LOCAL_DATA_FILE = "data_sample_1million.parquet" # Nom du fichier qui sera sauvegardé localement
 
 # On utilise un "décorateur" de Streamlit. @st.cache_data dit à l'application :
 # "Exécute cette fonction une seule fois. Si on la rappelle avec les mêmes arguments,
