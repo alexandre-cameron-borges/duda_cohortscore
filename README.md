@@ -42,7 +42,7 @@ ou
 
 | Table                                    |       Lignes | Description                       |
 | ---------------------------------------- | -----------: | --------------------------------- |
-| [`instacart_sample_1m.parquet`](https://drive.google.com/file/d/1zzGkuyKsOTdlkE96EEkLcOmxMoL_T2GY/view?usp=drive_link)            |    1 000 000 | Échantillon utilisé par l’app     |
+| [`instacart_sample_1m.parquet`](https://drive.google.com/file/d/1znbv-o5XfyWLc_5IcnHosrDdgH8JafDp/view?usp=drive_link)            |    1 000 000 | Échantillon utilisé par l’app     |
 
 *Source* : [Kaggle – Instacart Online Grocery Basket Analysis](https://www.kaggle.com/datasets/yasserh/instacart-online-grocery-basket-analysis-dataset)
 
@@ -72,7 +72,7 @@ duda_cohortscore/
 ├── data_and_finetuning_cohort.py  # EDA, nettoyage & création de variables
 ├── requirements.txt                # Dépendances Python
 ├── data/
-│   ├── [instacart_sample_1m.parquet](https://drive.google.com/file/d/1zzGkuyKsOTdlkE96EEkLcOmxMoL_T2GY/view?usp=drive_link) # Échantillon de travail
+│   ├── [instacart_sample_1m.parquet](https://drive.google.com/file/d/1znbv-o5XfyWLc_5IcnHosrDdgH8JafDp/view?usp=drive_link) # Échantillon de travail
 │   └── [instacart_cleaned.csv](https://drive.google.com/file/d/1pRjgJ3X8CXfcaApv_W-QfZiWTHO71HlS/view?usp=drive_link)       # Jeu nettoyé final
 └── README.md                       # Ce document
 ```
