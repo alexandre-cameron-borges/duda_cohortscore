@@ -129,20 +129,25 @@ st.markdown("Nombre de commandes correspondant à nos filtres :")
 # st.metric est un afficheur spécial pour les chiffres clés.
 st.metric("Lignes sélectionnées", f"{len(filtered):,}")
 
-# --- KPI globaux : Panier moyen & LTV moyenne (hors filtres) ---
-col1, col2 = st.columns(2)
+# --- KPI globaux : prix moyen par produit, panier moyen, LTV moyenne ---
+col1, col2, col3 = st.columns(3)
 
-# 1) Panier moyen global (AOV)
+# 1) Prix moyen par produit
+avg_price_product = df['price'].mean()
+
+# 2) Panier moyen par commande
 order_totals_all = df.groupby('order_id')['price'].sum()
 avg_order_value_all = order_totals_all.mean()
 
-# 2) LTV moyenne globale
+# 3) LTV moyenne par client
 user_totals_all = df.groupby('user_id')['price'].sum()
 avg_ltv_all = user_totals_all.mean()
 
-# 3) Affichage côte-à-côte
-col1.metric("Panier moyen global", f"{avg_order_value_all:.2f} €")
-col2.metric("LTV moyenne globale", f"{avg_ltv_all:.2f} €")
+# Affichage
+col1.metric("Prix moyen par produit", f"{avg_price_product:.2f} €")
+col2.metric("Panier moyen par commande", f"{avg_order_value_all:.2f} €")
+col3.metric("Dépense moyenne par client (LTV)", f"{avg_ltv_all:.2f} €")
+
 
 
 
