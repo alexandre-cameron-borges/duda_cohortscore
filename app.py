@@ -177,6 +177,17 @@ if not filtered.empty:
     # On affiche la figure complète dans Streamlit.
     plt.tight_layout()
     st.pyplot(fig_prod)
+
+    # --- MODIFICATION POUR LES BALLONS ---
+    # On utilise st.session_state pour s'assurer que les ballons n'apparaissent qu'une seule fois par session.
+    # st.session_state.get('balloons_shown') vérifie si la clé 'balloons_shown' existe.
+    if not st.session_state.get('balloons_shown'):
+        # Si elle n'existe pas, on lance les ballons.
+        st.balloons()
+        # Et on crée immédiatement la clé en la mettant à True pour ne pas que ça se reproduise.
+        st.session_state.balloons_shown = True
+    # --- FIN DE LA MODIFICATION ---
+
 else:
     st.warning("Aucune donnée de produit à afficher avec les filtres actuels.")
 
