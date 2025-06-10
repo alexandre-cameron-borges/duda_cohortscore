@@ -373,10 +373,10 @@ st.markdown("Ce tableau résume les caractéristiques de chaque segment de clien
 st.markdown("""
 | Cluster | Nom du Segment | Récence (Moyenne) | Fréquence (Moyenne) | Montant (Moyen) | Nb de Clients | Interprétations | Priorités |
 |:---:|:---|:---:|:---:|:---:|:---:|:---|:---|
-| 2 | **🌱 Nouveaux Clients / Prometteurs** | 46 | 1 | 77.90€ | 104,382 | Ont acheté très récemment mais peu souvent. Potentiel de croissance. | **C'est votre futur.** Mettez en place des processus solides pour transformer ces nouveaux acheteurs en clients réguliers et, à terme, en champions. |
-| 0 | **👤 Clients Occasionnels** | 101 | 5 | 483.90€ | 58,169 | Achètent de temps en temps, sans grande fréquence ni dépense. | **Maintenez le contact** via des actions automatisées et à faible coût. Ils constituent une base stable qui peut réagir aux offres de masse. |
-| 3 | **⚠️ Clients à Risque / Sur le départ** | 153 | 21 | 1,162.30€ | 33,628 | Clients de valeur qui n'ont pas acheté depuis longtemps. Risque de churn. | **Agissez MAINTENANT** pour retenir ces clients de valeur. C'est souvent plus rentable de retenir un client que d'en acquérir un nouveau. |
-| 1 | **🏆 Champions / Meilleurs Clients** | 136 | 42 | 2,829.40€ | 10,030 | Très fidèles et dépensent beaucoup. Le cœur de votre chiffre d'affaires. | **Chouchoutez ce groupe.** Ils financent la croissance. Assurez-vous qu'ils restent heureux et fidèles. |
+| 2 | **🌱 Nouveaux Clients / Prometteurs** | 4 | 6 | 177.90€ | 104,382 | Ont acheté très récemment mais peu souvent. Potentiel de croissance. | **C'est votre futur.** Mettez en place des processus solides pour transformer ces nouveaux acheteurs en clients réguliers et, à terme, en champions. |
+| 0 | **👤 Clients Occasionnels** | 10 | 15 | 483.90€ | 58,169 | Achètent de temps en temps, sans grande fréquence ni dépense. | **Maintenez le contact** via des actions automatisées et à faible coût. Ils constituent une base stable qui peut réagir aux offres de masse. |
+| 3 | **⚠️ Clients à Risque / Sur le départ** | 15 | 32 | 1,162.30€ | 33,628 | Clients de valeur qui n'ont pas acheté depuis longtemps. Risque de churn. | **Agissez MAINTENANT** pour retenir ces clients de valeur. C'est souvent plus rentable de retenir un client que d'en acquérir un nouveau. |
+| 1 | **🏆 Champions / Meilleurs Clients** | 13 | 64 | 2,829.40€ | 10,030 | Très fidèles et dépensent beaucoup. Le cœur de votre chiffre d'affaires. | **Chouchoutez ce groupe.** Ils financent la croissance. Assurez-vous qu'ils restent heureux et fidèles. |
 """)
 # --- FIN DE L'AJOUT ---
 
