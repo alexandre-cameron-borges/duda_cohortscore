@@ -12,8 +12,8 @@ import gdown # Ajout pour le téléchargement depuis Google Drive
 
 # --- ÉTAPE 1 : Chargement des données depuis Google Drive ---
 # NOTE : Ce script va télécharger le fichier Parquet si il n'est pas trouvé localement.
-GDRIVE_FILE_ID = "104HyALPq0dAvM41KE0KswKIcIDukgXZb"
-LOCAL_DATA_FILE = "instacart_sample_500k.parquet" # Nom du fichier qui sera sauvegardé localement
+GDRIVE_FILE_ID = "1ilv6IxVUT34ZmQkWR-hzjp9PMLvs2byW"
+LOCAL_DATA_FILE = "instacart_sample_1m.parquet" # Nom du fichier qui sera sauvegardé localement
 
 @st.cache_data(ttl=24*3600)
 def load_data():
