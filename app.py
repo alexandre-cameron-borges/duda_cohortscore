@@ -11,28 +11,18 @@ from sklearn.cluster import KMeans
 from matplotlib.colors import LinearSegmentedColormap
 from mpl_toolkits.mplot3d import Axes3D
 
-# --- Chargement des données depuis Kaggle ---
+# --- Chargement des données localement ---
 @st.cache_data(ttl=24*3600)
 def load_data():
-    output_csv = 'instacart_cleaned.csv'
-    if not os.path.exists(output_csv):
-        try:
-            api = KaggleApi()
-            api.authenticate()
-            api.dataset_download_files(
-                'alexandrecameronb/duda-cohort',
-                path='.',
-                unzip=True
-            )
-        except Exception as e:
-            st.error(
-                "Impossible de télécharger le CSV depuis Kaggle.\n"
-                "Vérifiez vos secrets KAGGLE_USERNAME/KAGGLE_KEY,\n"
-                "ou placez 'instacart_cleaned.csv' manuellement dans le répertoire.\n"
-                f"Erreur: {e}"
-            )
-            return pd.DataFrame()
-    return pd.read_csv(output_csv)
+    csv_file = 'instacart_cleaned.csv'
+    if not os.path.exists(csv_file):
+        st.error(
+            "Le fichier 'instacart_cleaned.csv' est introuvable.
+"
+            "Veuillez uploader manuellement le CSV nettoyé dans le répertoire de l'application."  
+        )
+        return pd.DataFrame()
+    return pd.read_csv(csv_file)
 
 # Chargement des données
 df = load_data()
