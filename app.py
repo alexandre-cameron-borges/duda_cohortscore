@@ -27,8 +27,6 @@ def load_data():
     """
     # On vérifie d'abord si le fichier de données existe déjà sur le disque où l'application tourne.
     if not os.path.exists(LOCAL_DATA_FILE):
-        # Si le fichier n'est pas là, on affiche un message à l'utilisateur.
-        st.info(f"Fichier de données non trouvé. Téléchargement depuis Google Drive...")
         try:
             # On construit l'URL de téléchargement direct à partir de l'ID du fichier Google Drive.
             url = f'https://drive.google.com/uc?id={GDRIVE_FILE_ID}'
@@ -158,7 +156,7 @@ if not filtered.empty:
     y_prod = list(range(len(df_prod)))
     # On dessine le premier graphique à barres (quantité).
     bars1 = ax1.barh([i - 0.2 for i in y_prod], df_prod['total_qty'], height=0.4, color='steelblue', label='Quantité vendue')
-    ax1.set_yticks(y_prod); ax1.set_yticklabels(df_prod.index, fontsize=9); ax1.set_xlabel('Quantité vendue'); ax1
+    ax1.set_yticks(y_prod); ax1.set_yticklabels(df_prod.index, fontsize=9); ax1.set_xlabel('Quantité vendue'); ax1.invert_yaxis()
     # ax1.twiny() crée un deuxième axe des abscisses (X) qui partage le même axe des ordonnées (Y).
     # C'est l'astuce pour afficher deux mesures différentes (quantité et CA) sur le même graphique.
     ax_tw = ax1.twiny()
@@ -201,7 +199,7 @@ if not filtered.empty:
 
     y_aisle = list(range(len(df_aisle)))
     bars1_a = ax1_a.barh([i - 0.2 for i in y_aisle], df_aisle['total_qty'], height=0.4, color='steelblue', label='Quantité vendue')
-    ax1_a.set_yticks(y_aisle); ax1_a.set_yticklabels(df_aisle.index); ax1_a.set_xlabel('Quantité vendue'); ax1_a
+    ax1_a.set_yticks(y_aisle); ax1_a.set_yticklabels(df_aisle.index); ax1_a.set_xlabel('Quantité vendue'); ax1_a.invert_yaxis()
     ax2b_a = ax1_a.twiny()
     bars2_a = ax2b_a.barh([i + 0.2 for i in y_aisle], df_aisle['total_rev'], height=0.4, color='darkorange', label="Chiffre d'affaires (€)")
     ax2b_a.set_xlabel("Chiffre d'affaires (€)")
