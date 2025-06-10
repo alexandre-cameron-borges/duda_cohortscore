@@ -22,7 +22,6 @@ def load_data():
     puis les charge dans un DataFrame Pandas.
     """
     if not os.path.exists(LOCAL_DATA_FILE):
-        st.info(f"Fichier de données non trouvé. Téléchargement depuis Google Drive...")
         try:
             url = f'https://drive.google.com/uc?id={GDRIVE_FILE_ID}'
             gdown.download(url, LOCAL_DATA_FILE, quiet=False)
