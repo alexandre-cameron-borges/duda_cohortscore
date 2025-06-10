@@ -139,9 +139,9 @@ avg_price_product = df['price'].mean()
 order_totals_all = df.groupby('order_id')['price'].sum()
 avg_order_value_all = order_totals_all.mean()
 
-# 3) LTV moyenne par client (multiplication *6 pour être en phase avec le dataset complet incluant les commandes futures des clients)(en effet limite streamlit à 1M de lignes)
+# 3) LTV moyenne par client (multiplication *11 pour être en phase avec le dataset complet incluant les commandes futures des clients)(en effet limite streamlit à 1M de lignes)
 user_totals_all = df.groupby('user_id')['price'].sum()
-avg_ltv_all = user_totals_all.mean()*6
+avg_ltv_all = user_totals_all.mean()*11
 
 # Affichage
 col1.metric("Prix moyen par produit", f"{avg_price_product:.2f} €")
