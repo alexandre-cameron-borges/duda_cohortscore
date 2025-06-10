@@ -144,9 +144,9 @@ user_totals_all = df.groupby('user_id')['price'].sum()
 avg_ltv_all = user_totals_all.mean()*11
 
 # Affichage
-col1.metric("Prix moyen par produit", f"{avg_price_product:.2f} €")
-col2.metric("Panier moyen par commande", f"{avg_order_value_all:.2f} €")
-col3.metric("Dépense moyenne par client (LTV)", f"{avg_ltv_all:.2f} €")
+col1.metric("Prix moyen global par produit", f"{avg_price_product:.2f} €")
+col2.metric("Panier moyen global par commande (AOV)", f"{avg_order_value_all:.2f} €")
+col3.metric("Dépense moyenne globale par client (LTV)", f"{avg_ltv_all:.2f} €")
 
 
 
@@ -389,7 +389,7 @@ with col3d_2:
         st.plotly_chart(fig_interactive, use_container_width=True)
 
 # --- AJOUT DU TABLEAU RECAPITULATIF ---
-st.header("💡 Synthèse par Segment")
+st.header("💡 Synthèse globale (full_dataset) par Segment")
 st.markdown("Ce tableau résume les caractéristiques de chaque segment de clientèle et propose des pistes d'actions concrètes pour chacun.")
 
 st.markdown("""
