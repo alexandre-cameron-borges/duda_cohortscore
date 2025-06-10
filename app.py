@@ -129,6 +129,19 @@ st.markdown("Nombre de commandes correspondant à nos filtres :")
 # st.metric est un afficheur spécial pour les chiffres clés.
 st.metric("Lignes sélectionnées", f"{len(filtered):,}")
 
+# --- KPI : Montant moyen par commande ---
+st.subheader("💶 Montant moyen par commande")
+if not filtered.empty:
+    # 1) Regrouper par commande et sommer le prix de chaque ligne
+    order_totals = filtered.groupby('order_id')['price'].sum()
+    # 2) Calculer la moyenne de ces totaux
+    avg_order_value = order_totals.mean()
+    # 3) Afficher en KPI
+    st.metric(label="Panier moyen", value=f"{avg_order_value:.2f} €")
+else:
+    st.info("Aucune commande à afficher pour ce filtre.")
+
+
 # --- Section des Visualisations ---
 
 st.header("🛒 Analyse des Ventes : Produits et Rayons")
