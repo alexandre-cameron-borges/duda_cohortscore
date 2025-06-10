@@ -44,7 +44,6 @@ def load_data():
 # --- Initialisation de l'application ---
 st.set_page_config(layout="wide")
 # UI Setup
-st.set_page_config(page_title="Alexandre & Alioune's DUDA Analyse de Cohorts v1", layout="centered")
 st.title("💡 Alexandre & Alioune's DUDA Analyse de Cohorts v1")
 st.markdown('''Le :rainbow[DUDA Cohortscore] est le **MVP d'une Webapp streamlit de scoring d'audience (analyse descriptive Best-Sellers, RFM, LTV, Churn) réalisée pour le DU Panthéon Sorbonne Data Analytics 2025-2026 par Alexandre Cameron BORGES & Alioune DIOP**.  
 Basé sur de la visualisation seaborn, plotly, matplotlib & du K-mean clustering sur le dataset d'Instacart composé de 3M de commandes.
