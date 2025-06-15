@@ -42,7 +42,17 @@ ou
 
 | Table                                    |       Lignes | Description                       |
 | ---------------------------------------- | -----------: | --------------------------------- |
-| [`instacart_sample_1m.parquet`](https://drive.google.com/file/d/1znbv-o5XfyWLc_5IcnHosrDdgH8JafDp/view?usp=drive_link)            |    1 000 000 | Échantillon utilisé par l’app     |
+| [`instacart_sample_1m.parquet`](https://drive.google.com/file/d/1znbv-o5XfyWLc_5IcnHosrDdgH8JafDp/view?usp=drive_link)            |    1 000 000 | Ce jeu de données provient d'Instacart, une plateforme américaine de livraison d'épicerie en ligne. Il contient des informations anonymisées sur plus de 3 millions de commandes passées par plus de 200 000 utilisateurs Instacart en 2017.  |
+
+**Contenu principal
+**Le dataset comprend plusieurs fichiers CSV interconnectés :
+
+Orders : Informations sur chaque commande (ID utilisateur, jour de la semaine, heure, délai depuis la dernière commande)
+Products : Catalogue de ~50 000 produits avec leurs noms et rayons
+Aisles : Les 134 rayons du magasin (ex: "fresh vegetables", "packaged cheese")
+Departments : Les 21 départements (ex: "dairy eggs", "beverages")
+Order_products : Détails des produits dans chaque commande avec l'ordre d'ajout au panier
+    
 
 *Source* : [Kaggle – Instacart Online Grocery Basket Analysis](https://www.kaggle.com/datasets/yasserh/instacart-online-grocery-basket-analysis-dataset)
 
