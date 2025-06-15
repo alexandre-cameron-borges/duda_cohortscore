@@ -402,23 +402,142 @@ st.markdown("""
 """)
 # --- FIN DE L'AJOUT ---
 
-# --- WORDCLOUD OPTIONNEL ---
-st.sidebar.markdown("---")
-st.sidebar.subheader("Bonus : Analyse de Texte")
-# st.sidebar.file_uploader permet à l'utilisateur de charger son propre fichier.
-article_file = st.sidebar.file_uploader("Uploader un fichier .txt", type=["txt"])
-if article_file:
-    st.header("☁️ Nuage de mots à partir de votre texte")
-    try:
-        # On lit le contenu du fichier texte et on génère le nuage de mots.
-        text = article_file.read().decode('utf-8')
-        wc = WordCloud(width=800, height=400, background_color='white', collocations=False).generate(text)
-        fig_wc, ax_wc = plt.subplots(figsize=(12,6))
-        ax_wc.imshow(wc, interpolation='bilinear')
-        ax_wc.axis('off')
-        st.pyplot(fig_wc)
-    except Exception as e:
-        st.error(f"Erreur lors de la génération du WordCloud : {e}")
+st.header("Analyse de Texte : Nuage de Mots")
+import re
+from wordcloud import WordCloud, STOPWORDS
+
+# 1. Charger le texte de l’article
+text = """
+RFM Segmentation: What Is It, and How Can Marketers Use It?
+RFM Segmentation: What Is It, and How Can Marketers Use It? 
+By Ethan Shust, Last Updated: June 2, 2023
+
+Audience segmentation is a powerful way to analyze your customer data, define your target customer persona(s), and tailor your acquisition/retention efforts to each unique persona for the best-performing results. RFM Segmentation is a method of segmenting your customer audiences by grouping them based on three key vectors: recency, frequency, and monetary value. Let’s dig in!
+
+The Foundation: Marketing Segmentation 101
+Before we dive into the depths of RFM Segmentation (Recency, Frequency, Monetary Value), let's take a step back and review what segmentation means for marketers.
+
+Segmentation is a crucial component of every team's marketing strategy. It involves dividing a larger market into smaller groups of consumers with similar characteristics. By doing this, businesses can identify different customer groups and develop targeted marketing strategies that cater to each group's specific wants and needs. When done correctly, this leads to higher engagement, conversion rates, and customer loyalty.
+
+Marketers often use the following methods to segment their customers:
+
+Demographic Segmentation: This method groups customers based on demographic factors, such as age, gender, income, education, occupation, and family status.
+Geographic Segmentation: This method groups customers based on their location, such as country, region, city, or neighborhood.
+Psychographic Segmentation: This method groups customers based on personality traits, values, beliefs, interests, and lifestyles.
+Behavioral Segmentation: This method groups customers based on their behaviors, such as buying habits, product usage, brand loyalty, and decision-making processes.
+For more information on each type of segmentation, check out this awesome article from Yieldify.
+
+
+From the above list, behavioral segmentation is the method that informs RFM audiences, as these audiences are developed based on customers' past purchase behavior.
+
+But before we dive into RFM audiences, here’s a short list of the ways that analyzing transactional data benefits your business:
+
+Clear, Objective Criteria: Transactional data uncovers the clear, objective criteria critical for identifying and targeting high-value customers.
+Accurate and Reliable Data: Transactional data is typically more accurate and reliable than other forms of data, such as survey data or demographic data. Other forms of data can be subject to self-reporting biases and general errors.
+More Actionable Insights: Transactional data provides more actionable insights into customer behavior and preferences, allowing businesses to develop targeted and effective marketing strategies.
+Immediate Feedback: Transactional data provides immediate feedback on the effectiveness of marketing campaigns and promotions. This allows businesses to make quick optimizations necessary for improving results.
+So now that you’re sold on why transactional data matters, let’s talk RFM.
+
+
+The RFM model
+RFM segmentation is a customer segmentation technique that categorizes customers based on three vectors of their past purchasing behaviors: Recency, Frequency, and Monetary Value. We’ve unpacked each of these vectors for you below.
+
+Recency: This refers to how much time has elapsed since a customer last made a purchase. In most cases, customers who have purchased more recently are valuable customers likely to engage with the brand again.
+Frequency: This refers to how often a customer makes purchases. Customers who make frequent purchases are typically a brand’s most valuable customers, demonstrating higher brand loyalty than those who purchase less often.
+Monetary Value: This refers to the amount of money a customer has spent on purchases over a given period of time. Of course, customers who spend a comparatively high amount of money are valuable customers with higher brand loyalty, and are most likely to purchase again. Customers with high monetary value are typically the most valuable customers for a given brand.
+Using the RFM segmentation method, customers are ranked based on each of these three vectors and then divided - or segmented - into groups based on their scores.
+
+For example, a customer who purchased within the past few days, purchases your product at least once a month, and spends a comparatively high amount of money with your business will be segmented into a high-value segment.
+
+Conversely, a customer who hasn’t purchased from you in a year with only two low-value historical purchases would be segmented into a low-value segment.
+
+‍
+
+Common RFM Segments
+Here are some of the most popular segments brands develop using the RFM model:
+
+High-Value Customers: These are customers who score high on all three metrics (Recency, Frequency, and Monetary Value). They are typically the most engaged and loyal customers, likely to make frequent, high-value purchases. Businesses can target these customers with exclusive offers, loyalty programs, and personalized marketing campaigns to keep them engaged and encourage them to continue buying from the brand in the future.
+New Customers: These are customers who have made a recent purchase (high score for Recency), but have not yet established a high level of loyalty or spending (low scores for Frequency and Monetary Value). Businesses can target these customers with welcome offers and promotions to encourage them to make another purchase and/or establish a stronger personal relationship with the brand.
+High Risk Customers: These are customers who have not made a purchase recently (low score for Recency), but have previously made frequent and high-value purchases (high scores for Frequency and Monetary Value). These customers are segmented to flag them as they likely need some sort of nurturing to get them to return to the brand. Businesses can use this segment to launch re-engagement campaigns, personalized offers, and loyalty programs to encourage future purchases.
+Low-Value Customers: These are customers who score low on all three metrics (Recency, Frequency, and Monetary Value). They are typically the least engaged and loyal customers and are unlikely to make frequent or high-value purchases. Businesses can target these customers with promotions and special offers to encourage them to make another purchase, or they can be excluded from marketing campaigns to focus on higher-value customers.
+‍
+
+Building an RFM analysis
+Now that you know the what and the why, it’s time to dig into the how-to.
+
+PS: Triple Whale offers pre-built, plug & play RFM segments for your analysis if you’re ready to get rocking and rolling. If you’re feeling more manual, check out the steps below.
+
+Gather transactional data from your customer database or CRM system. This data should include purchase histories such as date, frequency, and transaction value for each customer.
+Calculate RFM scores by assigning a score for each of the three metrics (Recency, Frequency, and Monetary Value) based on the customer's past purchase behavior. For instance, a recent purchase earns a high Recency score, while frequent purchases result in a high frequency score.
+After calculating RFM scores for each customer, you can segment customers into groups based on their scores. One common approach is to use quartiles to divide customers into four equal groups based on their scores for each metric.
+After segmenting customers, analyzing their characteristics and behavior can reveal patterns and trends. This can assist in improving marketing and customer engagement strategies.
+Develop marketing strategies for each customer segment. High-value customers can be targeted with exclusive offers and loyalty programs, while low-value customers can be targeted with promotions to encourage repeat purchases.
+Regularly monitor and refine your marketing strategies and RFM segmentation based on customer behavior to improve customer engagement and maximize customer value.
+This is admittedly a very time-consuming process…so if you’re looking for a faster path to insights, keep reading to learn how Triple Whale unlocks ready-to-go RFM Analysis.
+
+‍
+
+Triple Whale’s SCDP and RFM audiences
+For Shopify-based brands, Triple Whale’s Smart Customer Data Platform comes pre-loaded with 6 powerful RFM segments. These are Triple Whale’s own AI-generated RFM audiences.
+
+To build these audiences, Triple Whale examines all of your customers’ historical data and splits them into buckets based on RFM scoring. In Triple Whale’s SCDP, these segments are highlighted with a square AI icon.
+
+Triple Whale’s RFM audiences are defined as follows:
+
+Loyal = Customers who buy the most often from your store.
+Core = Highly engaged customers who have bought most recently, the most often, and have generated the most revenue.
+Newbies = First-time buyers on your site.
+Whales = Customers who have generated the most revenue for your store.
+Promising = Customers who return often, but do not spend a lot.
+Lost = Customers who have made one purchase but have not been known to return.
+Daniel Okon, Founder/CEO of ACTIV Agency, recently tweeted about these RFM audiences in action:
+
+
+Daniel is the Founder/CEO of ACTIV, an agency that helps 7 and 8-figure brands unlock the key components that help them scale profitably. He also has a strong Twitter game. Check him out!
+
+‍
+
+The RFM Model for Marketers
+For marketers, leveraging the RFM Model unlocks detailed insights into customer behavior and preferences based directly on transactional data. With these insights, brands can assess customer engagement and loyalty levels, identify high loss-risk customers, and strategically tailor their marketing strategies to each unique persona. Additionally, RFM Analysis provides businesses with the data necessary to determine which channels, campaigns, and marketing tactics result in the highest return on investment (ROI).
+
+In today’s crazy, competitive market, RFM segmentation & analysis is an extremely powerful tool for achieving every brand’s main goal: making more money to grow the business.
+
+Ready to start digging in on RFM? Check out Triple Whale’s Smart Customer Data Platform and start exploring your brand’s smart RFM audiences today.
+
+Book A Free Demo Today!
+
+
+"""
+
+# afficher le texte original dans une section dépliable
+with st.expander("Cliquez pour voir le texte original"):
+    st.write(text)
+
+# 2. Nettoyage du texte
+#   - On supprime tous les caractères non alphabétiques (ponctuation, chiffres, etc.)
+#   - On convertit en minuscules pour uniformiser
+text_clean = re.sub(r'[^A-Za-z\s]', '', text).lower()
+
+# 3. Tokenisation
+#   - On découpe le texte en mots (tokens) sur les espaces
+tokens = text_clean.split()
+
+# 4. Suppression des stopwords
+#   - Les stopwords sont des mots très fréquents (articles, prépositions…) 
+#     qui n’apportent pas de sens particulier à l’analyse
+stopwords = set(STOPWORDS)
+tokens_filtered = [t for t in tokens if t not in stopwords]
+
+# 5. Génération du nuage de mots
+processed_text = " ".join(tokens_filtered)
+wc = WordCloud(width=800, height=400).generate(processed_text)
+
+# 6. Affichage (avec Streamlit)
+import matplotlib.pyplot as plt
+fig, ax = plt.subplots(figsize=(15, 7.5))
+ax.imshow(wc, interpolation='bilinear')
+ax.axis('off')
+st.pyplot(fig)
 
 # --- Footer ---
 st.markdown("---")
