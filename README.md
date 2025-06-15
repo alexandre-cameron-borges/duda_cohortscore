@@ -42,7 +42,7 @@ ou
 
 | Table                                    |       Lignes | Description                       |
 | ---------------------------------------- | -----------: | --------------------------------- |
-| [`instacart_sample_1m.parquet`](https://drive.google.com/file/d/1znbv-o5XfyWLc_5IcnHosrDdgH8JafDp/view?usp=drive_link)            |    1 000 000 | Ce jeu de données provient d'Instacart, une plateforme américaine de livraison d'épicerie en ligne. Il contient des informations anonymisées sur plus de 3 millions de commandes passées par plus de 200 000 utilisateurs Instacart en 2017.  |
+| [`instacart_sample_1m.parquet`](https://drive.google.com/file/d/1znbv-o5XfyWLc_5IcnHosrDdgH8JafDp/view?usp=drive_link)            |    1 000 000 | Cet échantillon de jeu de données provient d'Instacart, une plateforme américaine de livraison d'épicerie en ligne. L'original contient des informations anonymisées sur plus de 3 millions de commandes passées par plus de 200 000 utilisateurs Instacart en 2017.  |
 
 **Contenu principal: Le dataset comprend plusieurs fichiers CSV interconnectés :**
 
