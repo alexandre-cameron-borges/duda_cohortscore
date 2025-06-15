@@ -114,4 +114,4 @@ streamlit run app.py
 
 > *“In God We Trust, All the Others We Want Data.”*
 
-*Dernière mise à jour : 10 juin 2025*
+*Dernière mise à jour : 15 juin 2025*
